@@ -128,9 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DFT.cpp" />
+    <ClCompile Include="GDO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DFT.hpp" />
+    <ClInclude Include="GDO.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

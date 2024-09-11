@@ -117,10 +117,8 @@ void displayDFTResults(const vector<complex<double>>& Fx, int N, int samplesToDi
 	cout << "First " << samplesToDisplay << " samples of the output" << endl;
 	cout << "\n" << "k\t" << setw(12) << "Real\t" << setw(12) << "Imaginary" << endl;
 
-	for (int i = 0; i < samplesToDisplay; ++i) {
+	for (int i = 0; i < samplesToDisplay; ++i) 
 		cout << i << "\t" << setw(12) << Fx[i].real() / static_cast<double>(N) << "\t"
 			<< setw(12) << Fx[i].imag() / static_cast<double>(N) << endl;
-
-	} // for
 
 } // displayDFTResults

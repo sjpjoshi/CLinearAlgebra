@@ -18,9 +18,15 @@
     <ClCompile Include="DFT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GDO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DFT.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GDO.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
