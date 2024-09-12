@@ -13,20 +13,41 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Fourier Transform">
+      <UniqueIdentifier>{35f91e70-5ac9-473b-8004-f3965fe19ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Fourier Transform">
+      <UniqueIdentifier>{62d98a78-c988-4091-ad0b-6767db7f5957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Gradient">
+      <UniqueIdentifier>{749132cb-589f-4fd7-b6fe-963bf8ce0439}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Gradient">
+      <UniqueIdentifier>{d19507a7-7cc6-43b0-81c2-6a7b27ca386a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DFT.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Fourier Transform</Filter>
     </ClCompile>
-    <ClCompile Include="GDO.cpp">
+    <ClCompile Include="GradientDescentOptimizer.cpp">
+      <Filter>Source Files\Gradient</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DFT.hpp">
+      <Filter>Header Files\Fourier Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="GradientDescentOptimizer.hpp">
+      <Filter>Header Files\Gradient</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GDO.hpp">
+    <ClInclude Include="Main.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

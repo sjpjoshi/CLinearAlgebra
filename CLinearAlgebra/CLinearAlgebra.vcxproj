@@ -128,11 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DFT.cpp" />
-    <ClCompile Include="GDO.cpp" />
+    <ClCompile Include="GradientDescentOptimizer.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DFT.hpp" />
-    <ClInclude Include="GDO.hpp" />
+    <ClInclude Include="GradientDescentOptimizer.hpp" />
+    <ClInclude Include="Includes.hpp" />
+    <ClInclude Include="Main.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

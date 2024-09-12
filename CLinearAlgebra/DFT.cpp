@@ -1,9 +1,9 @@
 ﻿#include "DFT.hpp"
 
-int testDFT() {
+void FourierTransform::testDFT() {
 	// Get user input for signal properties
-	int N = getValidInt("Enter the number of samples (N): ", 10, 10000);
-	double signalK = getValidInt("Enter the signal frequency (k): ", 1, 10);
+	int N = FourierTransform::getValidInt("Enter the number of samples (N): ", 10, 10000);
+	double signalK = FourierTransform::getValidInt("Enter the signal frequency (k): ", 1, 10);
 
 	int results;
 	cout << "How many results do you want to output? enter: ";
@@ -16,14 +16,14 @@ int testDFT() {
 	vector<complex<double>> signal = generateSignal(N, signalK, signalPhase);
 
 	// Compute the DFT
-	vector<complex<double>> Fx = DFT(signal);
+	vector<complex<double>> Fx = FourierTransform::DFT(signal);
 
 	// Display the results
-	displayDFTResults(Fx, N, results); // Show first 6 samples
+	FourierTransform::displayDFTResults(Fx, N, results); 
 	
 } // testDFT
 
-vector <complex<double>> DFT(vector<complex<double>> X) {
+vector <complex<double>> FourierTransform::DFT(vector<complex<double>> X) {
 	// Determine the number of samples
 	int N = X.size();
 	int K = N;
@@ -56,7 +56,7 @@ vector <complex<double>> DFT(vector<complex<double>> X) {
 } // DFT
 
 // Function to get user input with validation
-int getValidInt(const string& prompt, int minValue, int maxValue) {
+int FourierTransform::getValidInt(const string& prompt, int minValue, int maxValue) {
 	int value;
 	while (true) {
 		cout << prompt;
@@ -77,7 +77,7 @@ int getValidInt(const string& prompt, int minValue, int maxValue) {
 } // getValidInt
 
 // Function to get a valid floating-point value for phase input
-double getValidDouble(const string& prompt, double minValue, double maxValue) {
+double FourierTransform::getValidDouble(const string& prompt, double minValue, double maxValue) {
 	double value;
 	while (true) {
 		cout << prompt;
@@ -98,7 +98,7 @@ double getValidDouble(const string& prompt, double minValue, double maxValue) {
 } // getValidDouble
 
 // Function to generate the signal
-vector<complex<double>> generateSignal(int N, double signalK, double signalPhase) {
+vector<complex<double>> FourierTransform::generateSignal(int N, double signalK, double signalPhase) {
 	vector<complex<double>> signal;
 	signal.reserve(N);
 
@@ -112,7 +112,7 @@ vector<complex<double>> generateSignal(int N, double signalK, double signalPhase
 } // generateSignal
 
 // Function to display the DFT results
-void displayDFTResults(const vector<complex<double>>& Fx, int N, int samplesToDisplay) {
+void FourierTransform::displayDFTResults(const vector<complex<double>>& Fx, int N, int samplesToDisplay) {
 	cout << "------------------------------------" << endl;
 	cout << "First " << samplesToDisplay << " samples of the output" << endl;
 	cout << "\n" << "k\t" << setw(12) << "Real\t" << setw(12) << "Imaginary" << endl;
