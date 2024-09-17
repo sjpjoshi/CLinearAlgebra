@@ -1,125 +1,114 @@
 #include "GradientDescentOptimizer.hpp"
+#include <iostream>
+#include <fstream>
+#include <math.h>
 
-Gradient::GradientDescentOptimizer::GradientDescentOptimizer() 
-	: number_of_dimensions_(0), 
-	step_size_(0.0), 
-	max_iterations_(1), 
-	gradient_threshold_(1e-09), 
-	h_(0.001) {} // GradientDescentOptimizer
+Gradient::GradientDescentOptimizer::GradientDescentOptimizer() {
+	// Set defaults.
+	number_of_dimensions_ = 0;
+	step_size_ = 0.0;
+	max_iterations_ = 1;
+	h_ = 0.001;
+	gradient_threshold_ = 1e-09;
+
+} // GradientDescentOptimizer
 
 Gradient::GradientDescentOptimizer::~GradientDescentOptimizer() {} // ~GradientDescentOptimizer
 
-// Function to set the objective functions
 void Gradient::GradientDescentOptimizer::setObjectiveFunction(function<double(vector<double>*)> objective_function) {
 	objective_function_ = objective_function;
 
 } // setObjectiveFunction
 
-// function to set the inital(start) point and set the number of degrees of freedom
-void Gradient::GradientDescentOptimizer::setInitialPoint(vector<double> initial_point) {
-	// copy the inital point
+void Gradient::GradientDescentOptimizer::setInitialPoint(const vector<double> initial_point) {
+	// Copy the start point.
 	initial_point_ = initial_point;
 
-	// determine the number of degrees of freedom
+	// Determine the number of degrees of freedom.
 	number_of_dimensions_ = initial_point_.size();
-	cout << "Number of Dimensions: " << number_of_dimensions_ << endl;
 
-} // setInitialPoint 
+} // setInitialPoint
 
-// function to set the step size
 void Gradient::GradientDescentOptimizer::setStepSize(double step_size) {
-	step_size_ = step_size;
+	 step_size_ = step_size;
 
 } // setStepSize
 
-// function to set the max iterations
 void Gradient::GradientDescentOptimizer::setMaxIterations(int max_iterations) {
 	max_iterations_ = max_iterations;
 
 } // setMaxIterations
 
-// function to set the gradient threshold
-// the optimization stops when the gradient magnitude is below this value
-void Gradient::GradientDescentOptimizer::setGradientThreshold(double gradient_threshold) {
+void Gradient::GradientDescentOptimizer::setGradientThreshold(double gradient_threshold) {	
 	gradient_threshold_ = gradient_threshold;
 
 } // setGradientThreshold
 
-// function to perform the optimization
 bool Gradient::GradientDescentOptimizer::Optimize(vector<double>* function_location, double* function_value) {
-	// set the current point to the start point
+	// Set the currentPoint to the startPoint.
 	current_point_ = initial_point_; 
 
-	// loop up to max iterations or until threshold is reached
-	int iteration_count = 0;
-	double gradient_magnitude = 1.0;
+	// Loop up to max iterations or until threshold reached.
+	int iterCount = 0; 
+	double gradientMagnitude = 1.0; 
+	while ((iterCount < max_iterations_) && (gradientMagnitude > gradient_threshold_))
+	{
+		// Compute the gradient vector.
+		std::vector<double> gradientVector = ComputeGradientVector(); 
+		gradientMagnitude = ComputeGradientMagnitude(gradientVector); 
 
-	while ((iteration_count < max_iterations_) && (gradient_magnitude > gradient_threshold_)) {
-
-		// compute the gradient vector
-		vector<double> gradient_vector = ComputeGradientVector();
-		gradient_magnitude = ComputeGradientMagnitude(gradient_vector);
-	 
-		// Debug output for each iteration
-		cout << "Iteration: " << iteration_count << ", Gradient Magnitude: " << gradient_magnitude << endl;  
-		cout << "Current Point: " << current_point_[0] << endl;  
-
-		// compute the gradient vector
-		vector<double> new_point = current_point_;
-		for (int i = 0; i < number_of_dimensions_; ++i) {
-			new_point[i] += -(gradient_vector[i] * step_size_);
-			cout << "New point: " << new_point[i] << endl;
+		// Compute the new point.
+		std::vector<double> newPoint = current_point_; 
+		for (int i = 0; i < number_of_dimensions_; ++i) 
+		{
+			newPoint[i] += -(gradientVector[i] * step_size_); 
 		}
 
+		// Update the current point.
+		current_point_ = newPoint; 
 
-		// update the current point
-		current_point_ = new_point; 
+		// Increment the iteration counter.
+		iterCount++; 
+	}
 
-		iteration_count++;
-
-	} // while
-
-	// return the results
-	*function_location = current_point_;
-	*function_value = objective_function_(&current_point_);
+	// Return the results.
+	*function_location = current_point_;  
+	*function_value = objective_function_(&current_point_); 
 
 	return 0;
 
 } // Optimize
 
-// function to compute the gradient of the object function in the specific dimension
 double Gradient::GradientDescentOptimizer::ComputeGradient(int dimension) {
-	// make a copy of the current location
-	vector<double> new_point = current_point_;
+	// Make a copy of the current location.
+	std::vector<double> newPoint = current_point_;
 
-	// modify the copy according to h and number of dimensions
-	new_point[dimension] += h_;
+	// Modify the copy, according to h and dim.
+	newPoint[dimension] += h_;
 
-	// compute the two function values for these points
-	double function_value_one = objective_function_(&current_point_);
-	double function_value_two = objective_function_(&new_point); 
+	// Compute the two function values for these points.
+	double funcVal1 = objective_function_(&current_point_);
+	double funcVal2 = objective_function_(&newPoint);
 
-	// compute the approximate numerical values
-	return (function_value_two - function_value_one) / h_;
+	// Compute the approximate numerical gradient.
+	return (funcVal2 - funcVal1) / h_;
 
 } // ComputeGradient
 
-// function to compute the gradient vector
-vector<double> Gradient::GradientDescentOptimizer::ComputeGradientVector() {
-	vector<double> gradient_vector = current_point_;
-	for (int i = 0; i < number_of_dimensions_; ++i)
-		gradient_vector[i] = ComputeGradient(i);
-
-	return gradient_vector; 
-	 
-} // ComputeGradientVector
-
-// function to compute the gradient magnitude
 double Gradient::GradientDescentOptimizer::ComputeGradientMagnitude(vector<double> gradient_vector) {
-	double vector_magnitude = 0.0;
+	double vectorMagnitude = 0.0; 
 	for (int i = 0; i < number_of_dimensions_; ++i)
-		vector_magnitude += gradient_vector[i] * gradient_vector[i];
+		vectorMagnitude += gradient_vector[i] * gradient_vector[i];
 
-	return sqrt(vector_magnitude); 
-
+	return sqrt(vectorMagnitude);
+	 
 } // ComputeGradientMagnitude
+
+vector<double> Gradient::GradientDescentOptimizer::ComputeGradientVector() {
+	std::vector<double> gradientVector = current_point_; 
+	for (int i = 0; i < number_of_dimensions_; ++i) 
+		gradientVector[i] = ComputeGradient(i); 
+
+	return gradientVector; 
+	
+} // ComputeGradientVector

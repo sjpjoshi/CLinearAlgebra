@@ -13,42 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\Fourier Transform">
-      <UniqueIdentifier>{35f91e70-5ac9-473b-8004-f3965fe19ef5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Fourier Transform">
-      <UniqueIdentifier>{62d98a78-c988-4091-ad0b-6767db7f5957}</UniqueIdentifier>
+      <UniqueIdentifier>{86b34808-c7ac-4bf5-954d-aa052ebacba4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Gradient">
-      <UniqueIdentifier>{749132cb-589f-4fd7-b6fe-963bf8ce0439}</UniqueIdentifier>
+    <Filter Include="Header Files\Fourier Transform">
+      <UniqueIdentifier>{577e54c0-9abb-4d3a-a1c2-4681cf7270b1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Gradient">
-      <UniqueIdentifier>{d19507a7-7cc6-43b0-81c2-6a7b27ca386a}</UniqueIdentifier>
+      <UniqueIdentifier>{44ba0668-430f-43ec-b477-a076e7f11110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Gradient">
+      <UniqueIdentifier>{19b4b96a-d4b2-4f36-a7e3-52ebb1136de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CMatrix">
+      <UniqueIdentifier>{2f32dd07-3db7-4c86-adf1-63204b997fc7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="DFT.cpp">
       <Filter>Source Files\Fourier Transform</Filter>
     </ClCompile>
     <ClCompile Include="GradientDescentOptimizer.cpp">
       <Filter>Source Files\Gradient</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Includes.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="DFT.hpp">
       <Filter>Header Files\Fourier Transform</Filter>
     </ClInclude>
     <ClInclude Include="GradientDescentOptimizer.hpp">
       <Filter>Header Files\Gradient</Filter>
     </ClInclude>
-    <ClInclude Include="Includes.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Main.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CMatrix2.hpp">
+      <Filter>Header Files\CMatrix</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -132,6 +132,7 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CMatrix2.hpp" />
     <ClInclude Include="DFT.hpp" />
     <ClInclude Include="GradientDescentOptimizer.hpp" />
     <ClInclude Include="Includes.hpp" />
