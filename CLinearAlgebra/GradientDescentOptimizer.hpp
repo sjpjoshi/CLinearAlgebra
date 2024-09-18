@@ -2,8 +2,7 @@
 
 #include "Includes.hpp"
 
-namespace Gradient {
-	class GradientDescentOptimizer {
+class GradientDescentOptimizer {
 
 	public:
 		GradientDescentOptimizer();
@@ -21,9 +20,10 @@ namespace Gradient {
 		bool Optimize(vector<double> *function_location, double * function_value);
 
 	private:
-		double		 ComputeGradient(int dimension); 
-		vector<double> ComputeGradientVector();
-		double ComputeGradientMagnitude(vector<double> gradient_vector);
+		double		    ComputeGradient(int dimension); 
+		double			ComputeGradientMagnitude(vector<double> gradient_vector);
+
+		vector<double>  ComputeGradientVector();
 
 	private:
 		int    number_of_dimensions_; 
@@ -37,6 +37,4 @@ namespace Gradient {
 		vector<double>                    current_point_;
 		function<double(vector<double>*)> objective_function_; 
 
-	}; // GradientDescentOptimizer
-
-} // Gradient
+}; // GradientDescentOptimizer

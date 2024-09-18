@@ -12,19 +12,18 @@ using namespace std;
 
 // A simple function to print a matrix to stdout.
 template <class T>
-void PrintMatrix(CMatrix2<T> matrix)
-{
+void PrintMatrix(CMatrix2<T> matrix) {
 	int nRows = matrix.getNumberRow();
 	int nCols = matrix.getNumberCols();
-	for (int row = 0; row < nRows; ++row) 
-	{
+	for (int row = 0; row < nRows; ++row)  {
 		for (int col = 0; col < nCols; ++col)
-		{
 			cout << std::fixed << std::setprecision(3) << matrix.getElement(row, col) << "  ";
-		}
+		
 		cout << endl;
-	}
-}
+
+	} // for
+
+} // PrintMatrix
 
 int main()
 {
