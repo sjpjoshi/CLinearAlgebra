@@ -1,14 +1,12 @@
 #pragma once
 
-template <class T>
-
-
 /************************************************************************
 
-						HEADER
+							HEADER
 
 *************************************************************************/
 
+template <class T>
 class CMatrix2 {
 public:
 	// Constructors
@@ -17,8 +15,8 @@ public:
 	CMatrix2(int number_rows, int number_cols);
 	CMatrix2(int number_rows, int number_cols, const T * input_data);
 	CMatrix2(const CMatrix2<T>& input_matrix);
-	//---------------------
-
+	//------------------------------------------------------------------
+	
 	//Destructor
 	~CMatrix2();
 
@@ -27,13 +25,15 @@ public:
 
 	// Element Access
 	//-------------------------------------------------
-	T getElement(int row, int col);
-	bool setElement(int row, int col, T element_value);
-	int getNumberRow();
-	int getNumberCols();
+	bool setElement   (int row, int col, T element_value);
+	T    getElement   (int row, int col); 
+	int  getNumberRow ();
+	int  getNumberCols();
 	//-------------------------------------------------
 
+	// Overload ==
 	bool operator== (const CMatrix2<T>& rhs);
+	
 
 	// Overload +, - and * operators (friends).
 	//-----------------------------------------------------------------------------------------------
@@ -58,7 +58,6 @@ private:
 	int number_rows_, number_cols_, number_elements_;
 
 }; // CMatrix2
-
 
 
 /************************************************************************
