@@ -86,7 +86,7 @@ CMatrix2<T>::CMatrix2(int number_rows, int number_cols) {
 	number_rows_ = number_rows;
 	number_cols_ = number_cols;
 	number_elements_ = number_rows_ * number_cols_; 
-	matrix_data_ = new T(number_elements_); 
+	matrix_data_ = new T[number_elements_];
 	for (int i = 0; i < number_elements_; ++i)
 		matrix_data_[i] = 0.0; 
 
@@ -98,7 +98,7 @@ CMatrix2<T>::CMatrix2(int number_rows, int number_cols, const T* input_data) {
 	number_rows_ = number_rows; 
 	number_cols_ = number_cols;
 	number_elements_ = number_rows_ * number_cols_; 
-	matrix_data_ = new T(number_elements_);  
+	matrix_data_ = new T[number_elements_];
 	for (int i = 0; i < number_elements_; ++i)
 		matrix_data_[i] = input_data[i]; 
 
@@ -107,6 +107,11 @@ CMatrix2<T>::CMatrix2(int number_rows, int number_cols, const T* input_data) {
 // A copy constructor
 template<class T>
 CMatrix2<T>::CMatrix2(const CMatrix2<T>& input_matrix) {
-
+	number_rows_ = number_rows;
+	number_cols_ = number_cols;
+	number_elements_ = number_rows_ * number_cols_;
+	matrix_data_ = new T[number_elements_]; 
+	for (int i = 0; i < number_elements_; ++i)
+		matrix_data_[i] = input_matrix.matrix_data_[i];    
 
 } // CMatrix2(const CMatrix2<T>& input_matrix)
