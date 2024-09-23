@@ -115,3 +115,54 @@ CMatrix2<T>::CMatrix2(const CMatrix2<T>& input_matrix) {
 		matrix_data_[i] = input_matrix.matrix_data_[i];    
 
 } // CMatrix2(const CMatrix2<T>& input_matrix)
+
+// Destructor
+template<class T>
+CMatrix2<T>::~CMatrix2() {
+	if (matrix_data_)
+		delete[] matrix_data_;
+
+	matrix_data_ = nullptr;
+
+} // ~CMatrix2
+
+/************************************************************************
+
+							CONFIGURATION
+
+**************************************************************************/
+
+// Matrix Resize 
+template<class T>
+bool CMatrix2<T>::Resize(int number_rows, int number_cols) {
+	number_rows_ = number_rows;  
+	number_cols_ = number_cols;
+	number_elements_ = (number_rows_ * number_cols_);
+	delete[] matrix_data_;
+
+	if (matrix_data_ != nullptr) {
+		for (int i = 0; i < number_elements_; i++)
+			matrix_data_[i] = 0.0;
+
+		return true;
+
+	} // if
+	else
+		return false;
+
+} // Resize
+
+
+
+/************************************************************************
+
+						ELEMENT ACCESS
+
+*************************************************************************/
+
+template<class T>
+inline bool CMatrix2<T>::setElement(int row, int col, T element_value)
+{
+	return false;
+}
+
